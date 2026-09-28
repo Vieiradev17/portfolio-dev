@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Dev Vieira</title>
+    <link rel="stylesheet" href="contato.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="nav-glass-container">
+        <div class="container nav-glass">
+            <div class="logo">DEV<span> VIEIRA</span></div>
+            <div class="nav-links">
+                <a href="home.html">Início</a>
+                <a href="servicos.html">Serviços</a>
+                <a href="contato.html">Contato</a>
+            </div>
+            <a href="https://wa.me/5551996567444" target="_blank" class="btn-whatsapp">WhatsApp</a>
+        </div>
+    </nav>
+
+    <section class="contato-hero">
+        <div class="container">
+            <span class="badge badge-glow">Vamos conversar?</span>
+            <h1 class="title-glow">Transforme sua ideia em <br><span>resultado real.</span></h1>
+            <p class="subtitle">Estou pronto para ouvir sobre seu projeto e desenhar a melhor estratégia técnica para o seu negócio.</p>
+        </div>
+    </section>
+
+    <section class="container section-padding">
+        <div class="contato-grid">
+            <div class="contato-info">
+                <div class="info-card">
+                    <span class="info-icon">📍</span>
+                    <div>
+                        <h4>Localização</h4>
+                        <p>Porto Alegre, RS - Atendimento Global</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <span class="info-icon">📧</span>
+                    <div>
+                        <h4>E-mail</h4>
+                        <p>dasilva.erik.vieira@gmail.com</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <span class="info-icon">💬</span>
+                    <div>
+                        <h4>WhatsApp</h4>
+                        <p>(51) 99656-7444</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-wrapper">
+                <form class="contato-form">
+                    <div class="input-group">
+                        <label>Nome Completo</label>
+                        <input type="text" placeholder="Como posso te chamar?" required>
+                    </div>
+                    <div class="input-group">
+                        <label>E-mail Corporativo</label>
+                        <input type="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Seu Projeto</label>
+                        <select required>
+                            <option value="" disabled selected>Selecione o tipo de serviço</option>
+                            <option value="lp">Landing Page Premium</option>
+                            <option value="sistema">Sistema sob Medida</option>
+                            <option value="suporte">Suporte & Manutenção</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Mensagem</label>
+                        <textarea rows="5" placeholder="Conte um pouco sobre o que você precisa..."></textarea>
+                    </div>
+                    <button type="button" id="btnEnviarWhatsapp" class="btn-enviar">Enviar Proposta. 🚀</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+    document.getElementById('btnEnviarWhatsapp').addEventListener('click', function() {
+        // 1. Pega os valores dos campos
+        const nome = document.querySelector('input[placeholder="Como posso te chamar?"]').value;
+        const email = document.querySelector('input[placeholder="seu@email.com"]').value;
+        const servico = document.querySelector('select').value;
+        const mensagem = document.querySelector('textarea').value;
+
+        // 2. Validação simples para não enviar vazio
+        if (!nome || !email || !servico) {
+            alert("Por favor, preencha o nome, e-mail e selecione o serviço.");
+            return;
+        }
+
+        // 3. Formata a mensagem para o WhatsApp (usando %0A para pular linha)
+        const textoCriptografado = `*Nova Proposta - Dev Vieira*%0A%0A` +
+            `*Nome:* ${nome}%0A` +
+            `*E-mail:* ${email}%0A` +
+            `*Serviço:* ${servico}%0A` +
+            `*Mensagem:* ${mensagem}`;
+
+        // 4. Seu número de telefone (DDI + DDD + Número) - Coloque o seu real aqui!
+        const seuTelefone = "5551996567444"; 
+
+        // 5. Monta a URL e abre em nova aba
+        const url = `https://api.whatsapp.com/send?phone=${seuTelefone}&text=${textoCriptografado}`;
+        window.open(url, '_blank');
+    });
+</script>
+
+    <footer class="footer-bg">
+        <div class="logo logo-footer-glow">DEV<span> VIEIRA</span></div>
+        <p style="margin-top: 20px; color: #ffffff; font-size: 0.8rem; opacity: 0.6;">&copy; 2026 | Porto Alegre/RS.</p>
+    </footer>
+
+</body>
+</html>
